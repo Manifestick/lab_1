@@ -15,7 +15,7 @@ jobs:
             pipenv install
       - run:
           command: |
-            pipenv run python Tests/test1.py test
+            pipenv run python testing.py test
   #deploy:
     #docker:
      # - image: google/cloud-sdk
