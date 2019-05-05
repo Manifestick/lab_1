@@ -8,6 +8,6 @@ def my_sum(a, b):
 
 class MyTest(unittest.TestCase):
     def test_1(self):
-        self.assertEquals(my_sum(6, 6), 12)
+        self.assertEquals(my_sum(5, 6), 12)
 
 
