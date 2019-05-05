@@ -9,27 +9,34 @@ jobs:
       - checkout # check out the code in the project directory
       - run: pip install flask --user
       #- run: #FLASK_APP=h_w.py /home/circleci/.local/bin/flask run
-  deploy:
-    docker:
-      - image: google/cloud-sdk
-    steps:
-      - checkout
-      - run: echo 'export NKEY="my-project-74401-97deeaaa8507.json"' >> $BASH_ENV
-      - run: gcloud auth activate-service-account --key-file=$NKEY
-      - run: gcloud config list
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - run:
+          command: |
+            pipenv run python Tests/test1.py test
+  #deploy:
+    #docker:
+     # - image: google/cloud-sdk
+    #steps:
+    #  - checkout
+    # - run: echo 'export NKEY="my-project-74401-97deeaaa8507.json"' >> $BASH_ENV
+    #  - run: gcloud auth activate-service-account --key-file=$NKEY
+     # - run: gcloud config list
       #- run: gcloud compute project-info describe --project my-project-74401
-      - run: gcloud config set project my-project-74401
-      - run: gcloud config set compute/region europe-west2
-      - run: gcloud config set compute/zone europe-west2-b
+     # - run: gcloud config set project my-project-74401
+     # - run: gcloud config set compute/region europe-west2
+      #- run: gcloud config set compute/zone europe-west2-b
       # - run: gcloud compute project-info add-metadata \
       #     --metadata google-compute-default-region=europe-west1,google-compute-default-zone=europe-west1-b
-      - run: gcloud config list
-      - run: gcloud app deploy app.yaml --project \
-                my-project-74401
+     # - run: gcloud config list
+     # - run: gcloud app deploy app.yaml --project \
+             #   my-project-74401
 
 
-orbs:
-  gcp-cli: circleci/gcp-cli@1.0.0
+#orbs:
+  #gcp-cli: circleci/gcp-cli@1.0.0
 
 
 workflows:
