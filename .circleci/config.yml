@@ -17,7 +17,7 @@ jobs:
           command: |
             pipenv run python testing.py test
       - store_test_results:
-          path: results
+          path: lab_1/results
   #deploy:
     #docker:
      # - image: google/cloud-sdk
