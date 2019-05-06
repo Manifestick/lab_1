@@ -14,8 +14,8 @@ jobs:
             sudo pip install pipenv
             pipenv install
       - run: 
-        command:  |
-           mkdir test_results
+          command:  |
+            mkdir test_results
       - run:
           command: |
             pipenv run python testing.py test
